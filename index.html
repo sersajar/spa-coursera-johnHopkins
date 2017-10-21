@@ -30,5 +30,24 @@
         <div>Total Numeric value of person's name is: {{totalValue}}</div>
     </div>
     
+    <br><hr><br>
+    
+    <h1>HTML5 Custom Attributes</h1>
+    <div id="target" greeting="hello">
+        <section>
+            <article>Article 1</article>
+        </section>
+    </div>
+    <script>
+//        var elem = document.getElementById('target');
+//        console.log(elem);
+//        console.log(elem.getAttribute('greeting'))
+        
+        var elem2 = document.querySelector("[ng-app]");
+        console.log(elem2)
+        console.log(elem2.getAttribute('ng-app'));
+        
+    </script>
+    
 </body>
 </html>

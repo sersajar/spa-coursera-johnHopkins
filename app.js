@@ -20,7 +20,6 @@
                     $scope.totalValue = totalNameValue;
                 };
 
-
                 function calculateNumericForString(string) {
                     
                     var totalStringValue = 0;
