@@ -9,6 +9,7 @@
                 $scope.message = "You have not press the button yet";
                 $scope.listOfItems = '';
                 $scope.checkIfTooMuch = function () {
+                    
                     // method to create an array from a string, using comas as separator
                     // trim() removes white-spaces and split() makes an array from a string
                     var item = $scope.listOfItems.trim().split(',');
