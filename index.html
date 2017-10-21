@@ -6,12 +6,15 @@
     <script src="app.js"></script>
     <title>My first AngularJS App</title>
   </head>
-  <body>
-    <div>
-        <h1>YUHUUUUUUU</h1>
-        <div ng-controller="MyFirstController">
-            <p>Que paixa aqui???</p>
-        </div>
+<body>
+    <h1>My nosecuantos AgularJS App</h1>
+    <!-- controller in app.js -->
+    <div ng-controller="MyFirstController">
+        Hello {{name}} <br>
+        {{sayHello()}} <hr><br>
+        <input type="text" ng-model="name">
+        Inside my input is (binded with the controller): {{name}}
     </div>
-  </body>
+
+</body>
 </html>
