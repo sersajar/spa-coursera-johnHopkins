@@ -12,12 +12,15 @@
 <body>
     
     <h1>The Digest Cycle</h1>
-    <div ng-controller='CounterController'>         
+    <div ng-controller='CounterController'>
+        <button ng-click="showNumberOfWatchers()">Log # of Watchers</button>
+          <input type="text" ng-model="name">
         <div>
+            <button ng-click="countOnce()">Up Once Counter (once)</button>
             <button ng-click="upCounter()">Increment Counter</button>
         </div>
-        
         <div>
+            Once counter: {{ onceCounter }} <br>
             Regular counter: {{ counter }}
         </div>
     </div>
