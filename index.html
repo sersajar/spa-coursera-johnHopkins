@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html ng-app='MsgApp'>
+<html ng-app='CounterApp'>
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
     <style> body { font-size: 1.2em; }</style>
-    <title>Expressions and Interpolation</title>
+    <title>ng-repeat</title>
   </head>
     
   
 <body>
     
-    <h1>Expressions and Interpolation</h1>
-    <div ng-controller='MsgController'>
-        {{ name | uppercase }} has a message for you: <br><br>
-        Original: {{ sayMessage() }} <br>
-        Loves: {{ sayLovesMessage() }} <br>
-        Truth: {{ sayLovesMessage() | truth : 'healthy' : 'cookie'}}
-        <hr>
+    <h1>The Digest Cycle</h1>
+    <div ng-controller='CounterController'>
+        <button ng-click="showNumberOfWatchers()">Log # of Watchers</button>
+        
         <div>
-            <button ng-click="feedYaakov()">Feed Yaakov</button>
-            Cost: {{ cookieCost | currency : "€" }}
-            <br><br>
-
-            <img ng-src="images/yaakov_{{stateOfBeing}}.png">
+            <button ng-click="countOnce()">Up Once Counter (once)</button>
+            <button ng-click="upCounter()">Increment Counter</button>
+        </div>
+        <div>
+            Once counter: {{ onceCounter }} <br>
+            Regular counter: {{ counter }}
         </div>
     </div>
 

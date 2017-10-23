@@ -1,49 +1,40 @@
 (function () {
     'use strict';
 
-    angular.module('MsgApp', [])
-        .controller('MsgController', MsgController)
-        // custom filter factories
-        .filter('loves', LovesFilter)
-        .filter('truth', TruthFilter); // not injected cause only used in html
-
-        MsgController.$inject = ['$scope', '$filter', 'lovesFilter'];
-        function MsgController($scope, $filter, lovesFilter) {
+    angular.module('CounterApp', [])
+        .controller('CounterController', CounterController);
+    
+        CounterController.$inject = ['$scope'];
+        function CounterController($scope) {
+            $scope.onceCounter = 0;
+            $scope.counter = 0;
             $scope.name = "Sergi";
-            $scope.stateOfBeing = "hungry";
-            $scope.cookieCost = 0.45;
-
-            $scope.sayMessage = function () {
-                var msg = $scope.name + " likes to eat healthy snacks at night!";
-                var output = $filter('uppercase')(msg);
-                return output;
+            
+            $scope.showNumberOfWatchers = function () {
+                console.log("# of watchers: ", $scope.$$watchersCount);
             };
             
-            $scope.sayLovesMessage = function () {
-                var msg = $filter('uppercase')($scope.name) + " likes to eat healthy snacks at night!";
-                msg = lovesFilter(msg);
-                return msg;
+            $scope.countOnce = function () {
+                $scope.onceCounter = 1;
             };
-
-        $scope.feedYaakov = function () {
-            $scope.stateOfBeing = "fed";
+            
+            $scope.upCounter = function () {
+              $scope.counter++;  
             };
+            
+            $scope.$watch(function () {
+                console.log("Digest Loop Fired!");
+            })
+            
+//            $scope.$watch('onceCounter', function (newValue, oldValue) {
+//                console.log("onceCounter old value: ", oldValue);
+//                console.log("onceCounter new value: ", newValue);
+//            });
+//            
+//            $scope.$watch('counter', function (newValue, oldValue) {
+//                console.log("counter old value: ", oldValue);
+//                console.log("counter new value: ", newValue);
+//            });
         }
-        
-        function LovesFilter() {
-            return function (input) {
-                input = input || "";
-                input = input.replace("likes", "loves");
-                return input;
-            };
-        }
-        
-        function TruthFilter() {
-            return function (input, target, replace) {
-                input = input || "";
-                input = input.replace(target, replace);
-                return input;
-            };
-        }    
     
 })();
