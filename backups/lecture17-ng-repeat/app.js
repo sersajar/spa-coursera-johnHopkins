@@ -2,7 +2,7 @@
     'use strict';
 
     var shoppingList1 = [
-        "Milk", "donuts", "Cookies", "Chocolate Bismol", "Peanut Butter", "CocaCola", "Pepito Bismol", "Oranges"
+        "Milk", "donuts", "Cookies", "Chocolate", "Peanut Butter", "CocaCola", "Pepito", "Oranges"
     ];
     
     var shoppingList2 = [
@@ -19,7 +19,7 @@
             quantity: "300"
         },
         {
-            name: "Chocolate Bismol",
+            name: "Chocolate",
             quantity: "20"
         },
         {
