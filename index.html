@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html ng-app="ShoppingListApp">
+<html ng-app='ShoppingListApp'>
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-    <style> body { font-size: 1.2em; }</style>
-    <title>Custom Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Custom Service Through a Provider</title>
   </head>
-    
-<body>
-    
-    <h1>Custom Service</h1>
-    
-    <div ng-controller="ShoppingListAddController as itemAdder">
-      <input type="text" ng-model="itemAdder.itemName" placeholder="item name">
-      <input type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity">
-      <button ng-click="itemAdder.addItem();">Add Item To Shopping List</button>
-    </div>
+  <body>
+    <h1>Custom Service Through a Provider</h1>
 
-    <div ng-controller="ShoppingListShowController as showList">
+    <!-- Preconfigured List -->
+    <div id="list" ng-controller='ShoppingListController as list'>
+      <h3>Shopping List</h3>
+      <input type="text" ng-model="list.itemName" placeholder="item name">
+      <input type="text" ng-model="list.itemQuantity" placeholder="quantity">
+      <button ng-click="list.addItem();">Add Item</button>
       <ol>
-        <li ng-repeat="item in showList.items">
+        <li ng-repeat="item in list.items">
           {{ item.quantity }} of {{ item.name }}
-          <button ng-click="showList.removeItem($index);">Remove Item</button>
+          <button ng-click="list.removeItem($index);">Remove Item</button>
         </li>
       </ol>
+      <div class="error">Error: {{list.errorMessage}}</div>
     </div>
-    
-</body>
+
+  </body>
 </html>
