@@ -39,3 +39,18 @@ console.log("Grandchild: ", grandChild);
 grandChild.walk();
 
 // ** Function constructors
+// Lecture 48 from other course: HTML, CSS and JS for webDev
+
+function Dog(name) {
+    this.name = name;
+    console.log("'this' is: ", this);
+}
+
+var myDog = new Dog("Max");
+console.log("myDog: ", myDog);
+
+// Not being used as a function constructor
+Dog("Max2");
+
+
+
