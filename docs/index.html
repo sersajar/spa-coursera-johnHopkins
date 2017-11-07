@@ -1,12 +1,43 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <title>ANGULAR JS COURSERA JHON HOPKINS UNIVERSITY</title>
-</head>
-<body>
-    <header>
-        <h1>ANGULAR JS JOHN HOPKINS</h1>
-    </header>
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+    
+    
+<body ng-app="NarrowItDownApp">
+    
+    <div ng-controller="NarrowItDownController as narrowItDown" class="container"> 
+        <h1>Narrow Down Your Chinese Menu Choice</h1>
+
+        <div class="row">
+            <div class="row-content col-sm-4 form-group">
+                <input type="text" placeholder="search term" class="form-control" ng-model="narrowItDown.searchTerm" ng-focus="narrowItDown.resetForm()"  ng-blur="narrowItDown.resetForm()">
+            </div>
+            <div class="row-content col-sm-4 form-group narrow-button">
+                <button class="btn btn-primary" ng-click="narrowItDown.searchMenu(narrowItDown.searchTerm)">Narrow It Down For Me!</button>
+            </div>  
+        </div>
+       
+        <!-- found-items should be implemented as a component -->
+        <div class="row">
+            <div class="row-content col-sm-6">
+                <found-items search-term="{{narrowItDown.searchTerm}}"
+                    found="narrowItDown.found"
+                    on-remove="narrowItDown.removeItem(index)"
+                    search-query="narrowItDown.searchQuery()"
+                    nothing-found="narrowItDown.nothingFound()"></found-items>
+            </div>
+                
+            <items-loader-indicator loader="narrowItDown.loading()"></items-loader-indicator>
+        </div>
+        
+    </div>
+    
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
