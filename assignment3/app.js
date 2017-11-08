@@ -10,55 +10,17 @@
         .constant('ApiURL', 'https://davids-restaurant.herokuapp.com/menu_items.json');
     
     
-    /*FoundItems Directive*/
-    
-    function FoundItems () {
-        var ddo = {
-            restrict: 'E',
-            scope: {
-                searchTerm: '@',
-                found: '<',
-                onRemove: '&',
-                searchQuery: '&',
-                nothingFound: '&'
-            },
-            templateUrl: 'foundItems.html',
-            controller: FoundItemsController,
-            controllerAs: 'items',
-            bindToController: true
-        };
-        return ddo;
-      }
-    function FoundItemsController () {}
-
-    
-    /*ItemsLoaderIndicator description*/
-    
-    function ItemsLoaderIndicator () {
-        var ddo = {
-            restrict: 'E',
-            scope: {
-                loading: '&'
-            },
-          templateUrl: 'loader/itemsloaderindicator.template.html',
-          controller: ItemsLoaderIndicatorController,
-          controllerAs: 'loader',
-          bindToController: true
-        };
-        return ddo;
-    }
-    function ItemsLoaderIndicatorController () {}
-
-    
     /*NarrowItDownController*/
     
     NarrowItDownController.$inject = ['MenuSearchService'];
     function NarrowItDownController (MenuSearchService) {
         var narrowItDown = this;
-        narrowItDown.searchTerm = '';
-        narrowItDown.found = [];
+        
         narrowItDown.initialSearch = true;
         narrowItDown.isLoading = false;
+        
+        narrowItDown.searchTerm = '';
+        narrowItDown.found = [];
 
         narrowItDown.searchMenu = function (searchTerm) {
             
@@ -69,7 +31,9 @@
                 narrowItDown.found = [];
             } else {
                 narrowItDown.isLoading = true;
+                
                 var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
+                
                 promise.then(function (response) {
                     narrowItDown.initialSearch = false;
                     narrowItDown.found = Array.from(response);
@@ -90,27 +54,20 @@
         };
 
         narrowItDown.nothingFound = function () {
-            var nothingFound = (!narrowItDown.initialSearch && narrowItDown.searchTerm !== '' &&
-                narrowItDown.found.length === 0) ||
-                (!narrowItDown.initialSearch && narrowItDown.searchTerm === '' && narrowItDown.found.length === 0);
+            var nothingFound = (!narrowItDown.initialSearch && 
+                                narrowItDown.searchTerm !== '' && narrowItDown.found.length === 0) ||
+                                (!narrowItDown.initialSearch &&
+                                narrowItDown.searchTerm === '' &&
+                                narrowItDown.found.length === 0);
             return nothingFound;
-            };
+        };
 
         narrowItDown.searchQuery = function () {
             var searchQuery = narrowItDown.searchTerm || narrowItDown.found.length;
             return searchQuery;
         };
 
-        narrowItDown.resetForm = function () {
-            narrowItDown.initialSearch = true;
-            narrowItDown.isLoading = false;
-        };
-
-        narrowItDown.loading = function () {
-            return narrowItDown.isLoading;
-        };
     }
-    
     
     /*MenuSearchService*/
     MenuSearchService.$inject = ['$http', 'menuItemsFilter', 'ApiURL'];
@@ -130,7 +87,6 @@
         };
     }
     
-
     /*MenuItemsFilter*/
     
     MenuItemsFilter.$inject = ['$filter'];
@@ -151,4 +107,72 @@
         };
     }
     
+    /*FoundItems Directive*/
+    
+    function FoundItems () {
+        var ddo = {
+            restrict: 'E',
+            scope: {
+                searchTerm: '@',
+                found: '<',
+                onRemove: '&',
+                searchQuery: '&',
+                nothingFound: '&'
+            },
+            templateUrl: 'foundItems.html',
+            controller: FoundItemsController,
+            controllerAs: 'items',
+            bindToController: true
+        };
+        return ddo;
+      }
+    function FoundItemsController () {
+        var items = this;
+    }
+
+    
+    /*ItemsLoaderIndicator directive description*/
+    
+    function ItemsLoaderIndicator () {
+        var ddo = {    
+            restrict: 'E',
+            scope: {
+                isLoading: '='
+            },
+            templateUrl: 'loader/itemsloaderindicator.template.html',
+            controller: ItemsLoaderIndicatorController,
+            controllerAs: 'itemsLoaderIndicator',
+            bindToController: true,
+            link: itemsLoaderLink
+        };
+        return ddo;
+    }
+    function ItemsLoaderIndicatorController () {
+        var itemsLoaderIndicator = this;    
+    }
+
+    function itemsLoaderLink(scope, element, attrs, controller) {
+
+        scope.$watch('itemsLoaderIndicator.isLoading', function (newValue, oldValue) {
+
+            if (newValue === true) {
+                showLoader();
+            }
+            else {
+                hideLoader();
+            }
+        });
+
+        function showLoader() {
+            var loaderElem = element.find("div");
+            loaderElem.css("display", "block");
+        }
+
+        function hideLoader() {
+            var loaderElem = element.find("div");
+            loaderElem.css("display", "none");
+        }
+
+    }
+
 })();

@@ -5,6 +5,7 @@
     <li ng-repeat="item in items.found" class="col-sm-6">
         <h4> {{ item.name }} </h4>
         <p> {{ item.description }} </p>
+        <p> <strong>Short name: </strong> {{ item.short_name }} </p>
         <button class="btn-remove" ng-click="items.onRemove({index: $index})">Don't want this one!</button>
     </li>
 </ol>
