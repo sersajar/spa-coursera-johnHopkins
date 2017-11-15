@@ -1,0 +1,21 @@
+<ul class="breadcrumb">
+  <li class="breadcrumb-item"><a ui-sref="home">Home</a></li>
+  <li class="breadcrumb-item active">Categories</li>
+</ul>
+
+<categories-list>
+    
+    <ul class="list-group">
+        <li class="list-group-item justify-content-between" ng-repeat="item in $ctrl.items">
+            <div ui-sref="items({itemname:{{item.short_name}}})">
+
+                <b> {{item.name}} </b><br/>
+                {{item.special_instructions}}
+
+            </div>		
+        </li>
+    </ul>
+    
+</categories-list>
+
+<!--<categories-list items="menuList.items"></categories-list>-->

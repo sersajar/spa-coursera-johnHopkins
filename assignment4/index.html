@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Assignment 4 - Menu App</title>
+</head>
+    
+<body ng-app='MenuApp'>
+    
+    <h1>RESTAURANT MENU SEARCH ENGINE</h1>
+
+    <ui-view></ui-view>
+
+<!-- Libraries -->
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-ui-router.min.js"></script>
+
+<!-- Modules -->
+<script src="scripts/modules/menuapp.module.js"></script>
+<script src="scripts/modules/data.module.js"></script>
+    
+<!-- Services -->
+<script src="scripts/services/menudata.service.js"></script>
+                
+<!-- Routes -->
+<script src="scripts/routes.js"></script>
+
+<!-- Artifacts: components & controllers -->
+<script src="scripts/components/categories.component.js"></script>
+<script src="scripts/controllers/categories.controller.js"></script>
+<script src="scripts/components/items.component.js"></script>
+<script src="scripts/controllers/items.controller.js"></script>
+    
+</body>
+</html>

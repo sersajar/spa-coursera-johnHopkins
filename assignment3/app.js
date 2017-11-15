@@ -55,7 +55,8 @@
 
         narrowItDown.nothingFound = function () {
             var nothingFound = (!narrowItDown.initialSearch && 
-                                narrowItDown.searchTerm !== '' && narrowItDown.found.length === 0) ||
+                                narrowItDown.searchTerm !== '' && narrowItDown.found.length === 0) 
+                                            ||
                                 (!narrowItDown.initialSearch &&
                                 narrowItDown.searchTerm === '' &&
                                 narrowItDown.found.length === 0);
@@ -155,7 +156,7 @@
 
         scope.$watch('itemsLoaderIndicator.isLoading', function (newValue, oldValue) {
 
-            if (newValue === true) {
+            if (newValue) {
                 showLoader();
             }
             else {
